@@ -13,6 +13,18 @@ class Board extends Model
         'is_public'
     ];
 
+    protected $hidden = [
+        'user_id',
+        'created_at',
+        'updated_at'
+    ];
+
+    protected static function booted()
+    {
+        static::creating(function ($board) {
+            $board->user_id = auth()->id();
+        });
+    }
     public function user()
     {
         return $this->belongsTo(User::class);
