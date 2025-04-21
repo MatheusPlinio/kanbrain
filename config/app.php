@@ -15,6 +15,8 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'next_auth_secret' => env('NEXTAUTH_SECRET'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
