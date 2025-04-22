@@ -17,6 +17,8 @@ class SocialLoginController extends Controller
     {
         $data = $request->validated();
 
+        Log::info('Dados recebidos para login social', ['data' => $data]);
+
         try {
             $user = $this->userRepository->firstOrCreateFromSocial($data);
 
