@@ -9,6 +9,7 @@ class Column extends Model
     protected $fillable = [
         'board_id',
         'title',
+        'color',
         'order',
     ];
 

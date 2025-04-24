@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
+use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Model;
 
 class Board extends Model
 {
+    use HasSlug;
     protected $fillable = [
         'user_id',
         'title',
         'description',
-        'is_public'
+        'is_public',
+        'slug'
     ];
 
     protected $hidden = [
@@ -25,6 +28,12 @@ class Board extends Model
             $board->user_id = auth()->id();
         });
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

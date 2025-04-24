@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('board_id')->constrained('boards');
             $table->string('title', 55);
+            $table->string('color')->nullable();
             $table->integer('order');
             $table->timestamps();
         });

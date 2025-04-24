@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Board\BoardStoreRequest;
 use App\Http\Resources\BoardsResource;
+use App\Http\Resources\ShowBoardResource;
+use App\Models\Board;
 use App\Repositories\Contracts\Board\BoardRepositoryInterface;
+use Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class BoardController extends Controller
@@ -41,5 +44,12 @@ class BoardController extends Controller
                 'error' => $e->getMessage()
             ], $e->getCode() ?: Response::HTTP_INTERNAL_SERVER_ERROR);
         }
+    }
+
+    //**    
+    // * Exibir Quadro de Kanban */
+    public function show(Board $board)
+    {
+        return new ShowBoardResource($board->load('columns'));
     }
 }
