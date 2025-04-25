@@ -7,13 +7,13 @@ use App\Repositories\Contracts\Column\ColumnRepositoryInterface;
 
 class ColumnRepository implements ColumnRepositoryInterface
 {
-    public function store($data, $board_id): bool
+    public function store($data, $board_id)
     {
         return Board::find($board_id)->
             columns()->create(
                 [
                     'title' => $data['title'],
-                    'color' => $data['color'] ?? null
+                    'color' => $data['color']
                 ]
             );
     }

@@ -24,6 +24,7 @@ class StoreColumnRequest extends FormRequest
         return [
             'title' => 'required|string|max:55',
             'color' => 'sometimes|string',
+            'order' => 'sometimes|integer'
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Column\StoreColumnRequest;
 use App\Models\Board;
 use App\Repositories\Contracts\Column\ColumnRepositoryInterface;
+use Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class ColumnController extends Controller
@@ -13,8 +14,11 @@ class ColumnController extends Controller
     {
     }
 
-    public function store(StoreColumnRequest $request, Board $board)
+    public function store(StoreColumnRequest $request)
     {
+        $slug = $request->query('board_slug');
+        $board = Board::where('slug', $slug)->first();
+
         try {
             $this->columnRepository->store($request->validated(), $board->id);
 
@@ -26,7 +30,7 @@ class ColumnController extends Controller
             return response()->json([
                 'message' => 'Erro ao criar status',
                 'error' => $e->getMessage()
-            ], $e->getCode() ?: Response::HTTP_INTERNAL_SERVER_ERROR);
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }

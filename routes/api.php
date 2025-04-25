@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/store', [BoardController::class, 'store'])->name('store');
 
         Route::prefix('columns')->group(function () {
-            Route::post('/store/{board:slug}', [ColumnController::class, 'store'])->name('store');  
+            Route::post('/store', [ColumnController::class, 'store'])->name('store');  
 
             Route::prefix('tasks')->group(function () {
                 Route::get('/{column:id}', [TaskController::class, 'show'])->name('show');

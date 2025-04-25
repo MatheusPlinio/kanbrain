@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\HasOrder;
 use Illuminate\Database\Eloquent\Model;
 
 class Column extends Model
 {
+    use HasOrder;
     protected $fillable = [
         'board_id',
         'title',
